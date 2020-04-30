@@ -112,24 +112,17 @@ function localDescCreated(desc) {
   );
 }
 
+
 const input = document.getElementById('localVideo');
 const text = document.getElementById('label');
 input.addEventListener('play', ()=> {
   setInterval(async () => {
-    const detections = await faceapi.detectAllFaces(input, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
+    const detections = await faceapi.detectAllFaces(input, new faceapi.TinyFaceDetectorOptions())
     text.innerHTML = detections.length + " face detected";
   }, 100)
 })
 async function faceAPI(){
-  console.log(faceapi.nets.tinyFaceDetector);
-  
-  ///await changeFaceDetector(TINY_FACE_DETECTOR)
-faceapi.nets.tinyFaceDetector.loadFromUri('/models')
-faceapi.nets.faceLandmark68Net.loadFromUri('/models')
-  //changeInputSize(128)
+  faceapi.nets.tinyFaceDetector.loadFromUri('/models')
 }
-
-const TINY_FACE_DETECTOR = 'tiny_face_detector'
-
 
 faceAPI();
